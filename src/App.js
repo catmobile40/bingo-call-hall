@@ -64,6 +64,7 @@ function App() {
         >
           next number
         </button>
+        <div>{seenBeforeList.join(",")}</div>
       </header>
     </div>
   );
