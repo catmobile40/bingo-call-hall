@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
+import callsOld from "./calls_old.json";
+import callsNew from "./calls_new.json";
 
 function haveISeenThisNumber(number, seenBeforeList) {
   let seenBefore = false;
@@ -13,6 +15,8 @@ function haveISeenThisNumber(number, seenBeforeList) {
   return seenBefore;
 }
 
+const highestNumber = 15;
+
 function App() {
   let [currentNumber, setSelectedNumber] = useState(99);
   let [seenBeforeList, setSeenBeforeList] = useState([]);
@@ -22,18 +26,32 @@ function App() {
       <header className="App-header">
         <p>
           {currentNumber === 99
-            ? "Let's Bingo"
+            ? ""
+            : currentNumber === 98
+            ? ""
+            : `Traditional: ${callsOld[currentNumber]}`}
+        </p>
+        <p>
+          {currentNumber === 99
+            ? ""
+            : currentNumber === 98
+            ? ""
+            : `Modern: ${callsNew[currentNumber]}`}
+        </p>
+        <p>
+          {currentNumber === 99
+            ? "Let's play bingo"
             : currentNumber === 98
             ? "Bingo!"
             : currentNumber}
         </p>
         <button
           onClick={() => {
-            if (seenBeforeList.length < 90) {
-              let newNumber = Math.floor(90 * Math.random()) + 1;
+            if (seenBeforeList.length < highestNumber) {
+              let newNumber = Math.floor(highestNumber * Math.random()) + 1;
 
               while (haveISeenThisNumber(newNumber, seenBeforeList)) {
-                newNumber = Math.floor(90 * Math.random()) + 1;
+                newNumber = Math.floor(highestNumber * Math.random()) + 1;
               }
 
               setSeenBeforeList([...seenBeforeList, newNumber]);
