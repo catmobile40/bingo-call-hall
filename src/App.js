@@ -62,9 +62,18 @@ function App() {
           }}
           style={{ fontSize: "48px" }}
         >
-          next number
+          {currentNumber === 99 ? "First number" : "Next number"}
         </button>
         <div>{seenBeforeList.join(",")}</div>
+        <button
+          style={{ fontSize: "24px" }}
+          onClick={() => {
+            setSeenBeforeList([]);
+            setSelectedNumber(99);
+          }}
+        >
+          Start a new game
+        </button>
       </header>
     </div>
   );
